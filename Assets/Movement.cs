@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Movement : MonoBehaviour
 {
-
+    
     [SerializeField] float speed = 5f;
     [SerializeField] float rotationX = 5f;
     [SerializeField] private Animator animator;
@@ -46,6 +46,7 @@ public class Movement : MonoBehaviour
         Vector3 Rotate =  new Vector3 (0, rotateCharacterX, 0);
 
         transform.Rotate(Rotate);
+
 
     }
 }
