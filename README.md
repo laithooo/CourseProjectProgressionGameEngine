@@ -1,4 +1,7 @@
 # CourseProjectProgressionGameEngine
+
+LINK TO YOUTUBE VIDEO REPORT: https://youtu.be/TOZeQaD4zDc
+
 Laith Ghannam 100895645 for INFR 3110U – Game Engine Design & Implementation
 
 *IMPORTANT* Click on sample scene to load the actual game scene if u wish not to display win/lose screens
