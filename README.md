@@ -19,6 +19,11 @@ Dll displays dialogue made by goblins and main character, and I've turned the di
 Factory spawner simply spawns in goblins every 40 seconds to add challenge if player takes too long
 
 
+Assets credits:
+Goblin model and animations: https://assetstore.unity.com/packages/3d/characters/goblin-lowpoly-animation-311643
+Dungeon models: https://assetstore.unity.com/packages/3d/props/furniture/3d-dungeon-lowpoly-pack-231265
+Knight playermodel and animations: https://assetstore.unity.com/packages/3d/characters/humanoids/fantasy/rpg-hero-pbr-hp-polyart-121480
+
 
 
 
