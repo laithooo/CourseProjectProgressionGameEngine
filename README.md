@@ -4,7 +4,7 @@ LINK TO YOUTUBE VIDEO REPORT: https://youtu.be/TOZeQaD4zDc
 
 Laith Ghannam 100895645 for INFR 3110U – Game Engine Design & Implementation
 
-*IMPORTANT* Click on sample scene to load the actual game scene if u wish not to display win/lose screens
+*IMPORTANT* Click on sample scene to load the actual game scene if you wish not to display win/lose screens
 
 I've created a short platformer game that follows a knight that was captured by enemy forces and sent down a ruined dungeon, the scene starts with the knight wondering where he is and quickly realize he must escape before the dungeon falls apart. The scene then lets the player platform across small platforms in order to get to the next area and by the end of the 2nd area the knight will have to either fight or run away from the hordes of goblins that spawn in front of him. Once player makes it to the door at the end of the second platform he will be greeted with a win screen and a lose screen if he falls down to the pits or dies to the goblins.
 
@@ -20,6 +20,9 @@ Same with the command design pattern, I've asked AI to help me modify my already
 The DLL and Factory spawner are both coded by me and are both basic functions
 Dll displays dialogue made by goblins and main character, and I've turned the dialogue into buttons that the player can press to dismiss
 Factory spawner simply spawns in goblins every 40 seconds to add challenge if player takes too long
+
+
+Developed with the help of monday.com for project management: <img width="680" height="785" alt="image" src="https://github.com/user-attachments/assets/47dbc6c8-e7de-47ca-addd-f3eb5f677c4b" />
 
 
 Assets credits:
