@@ -2,6 +2,82 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+
+
+public interface ICommand
+{
+    void Execute(GameObject player);
+}
+
+public class MoveCommand : ICommand
+{
+    private Vector3 direction;
+    private float speed;
+
+    public MoveCommand(Vector3 direction, float speed)
+    {
+        this.direction = direction;
+        this.speed = speed;
+    }
+
+    public void Execute (GameObject player)
+    {
+        player.transform.Translate(direction * speed * Time.deltaTime);
+    }
+}
+
+public class RotateCommand : ICommand
+{
+    private float rotationCamera;
+    public RotateCommand(float rotationCamera)
+    {
+        this.rotationCamera = rotationCamera;
+    }
+
+
+
+    public void Execute(GameObject player)
+    {
+        Vector3 rotate = new Vector3(0, rotationCamera, 0);
+        player.transform.Rotate(0, rotationCamera,0);
+    }
+
+}
+
+public class InputRemapper
+{
+
+    private Dictionary<string, string> inputMap = new Dictionary<string, string>()
+    {
+        {"MoveX", "Horizontal"},
+        {"MoveZ", "Vertical" },
+        {"RotateCamera", "Mouse X" }
+    };
+
+    public string GetMappedInput(string action)
+    {
+
+        if(inputMap.TryGetValue(action, out string axis))
+        {
+            return axis;
+        }
+
+        return action;
+    }
+
+    public void Remap(string action, string newInput)
+    {
+        if (inputMap.ContainsKey(action))
+        {
+            inputMap[action] = newInput;    
+        }
+    }
+
+}
+
+
+
+
 public class Movement : MonoBehaviour
 {
     
@@ -9,6 +85,9 @@ public class Movement : MonoBehaviour
     [SerializeField] float rotationX = 5f;
     [SerializeField] private Animator animator;
     
+    private InputRemapper inputRemapper;
+    private ICommand moveCommand;
+    private ICommand rotateCommand;
 
     // Start is called before the first frame update
     void Start()
@@ -16,17 +95,20 @@ public class Movement : MonoBehaviour
         animator = GetComponent<Animator>();
         TimeManager.Instance.SetTime(120f); 
         TimeManager.Instance.StartTimer();
+        inputRemapper = new InputRemapper();
     }
 
     // Update is called once per frame
     void Update()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
+        float horizontal = Input.GetAxis(inputRemapper.GetMappedInput("MoveX"));
+        float vertical = Input.GetAxis(inputRemapper.GetMappedInput("MoveZ"));
+        float rotateX = Input.GetAxis(inputRemapper.GetMappedInput("RotateCamera")) * rotationX;
 
         Vector3 moving = new Vector3 (horizontal,0,vertical);
+        moveCommand = new MoveCommand(moving,speed);
+        moveCommand.Execute(this.gameObject);
 
-        transform.Translate( moving * speed * Time.deltaTime);
 
         if (vertical != 0)
         {
@@ -40,12 +122,11 @@ public class Movement : MonoBehaviour
             animator.SetBool("isMoving", false);
         }
 
-        float rotateCharacterX = Input.GetAxis("Mouse X") * rotationX;
-        
+        rotateCommand = new RotateCommand(rotateX);
+        rotateCommand.Execute(this.gameObject);
 
-        Vector3 Rotate =  new Vector3 (0, rotateCharacterX, 0);
 
-        transform.Rotate(Rotate);
+
 
 
     }
